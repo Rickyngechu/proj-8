@@ -1,3 +1,102 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  /* 
+    font family presets
+    400 - normal italics
+    700 -font-bold
+    800-font-extrabold italics
+     */
+
+  body {
+    font-family: "Poppins", sans-serif;
+  }
+  .calculator {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 2rem;
+    padding-block: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px,
+      rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
+      rgba(0, 0, 0, 0.07) 0px 16px 16px;
+  }
+  .lb {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: hsl(0, 1%, 44%);
+    margin-bottom: 0.2rem;
+  }
+  input {
+    width: 5rem;
+    border: 1px solid hsl(0, 1%, 44%);
+    background-color: transparent;
+    display: block;
+    border-radius: 6px;
+    padding: 0.3rem 0.5rem;
+    color: hsl(0, 0%, 8%);
+    font-family: inherit;
+    font-weight: 700;
+
+    transition: all 0.2s;
+  }
+  input:focus {
+    outline: none;
+    border: 1px solid hsl(259, 100%, 65%);
+  }
+
+  .btn {
+    text-align: center;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+  .btn-sub {
+    display: inline-block;
+    height: 3rem;
+    width: 3rem;
+    padding: 0.8rem;
+    border-radius: 50%;
+    background-color: hsl(259, 100%, 65%);
+  }
+
+  .hr {
+    position: absolute;
+    top: 48%;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #cacaca;
+    z-index: -1;
+    border-radius: 5px;
+  }
+
+  .output p {
+    font-weight: 800;
+    font-style: italic;
+    font-size: 3.5rem;
+    line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+  .val {
+    color: hsl(259, 100%, 65%);
+  }
+  @media screen and (max-width: 375px) {
+  }
+
+  @media screen and (min-width: 900px) {
+    .btn {
+      text-align: right;
+      z-index: 1;
+    }
+    .btn-sub:hover {
+      cursor: pointer;
+      background-color: hsl(0, 0%, 8%);
+    }
+  }
+}
