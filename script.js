@@ -4,9 +4,9 @@ const lbMonth = document.querySelector(".lb-month");
 const lbyear = document.querySelector(".lb-year");
 
 /* Input values */
-const day = document.querySelector(".inp-day");
-const month = document.querySelector(".inp-month");
-const year = document.querySelector(".inp-year");
+let day = document.querySelector(".inp-day");
+let month = document.querySelector(".inp-month");
+let year = document.querySelector(".inp-year");
 
 const form = document.querySelector(".fm");
 
@@ -63,6 +63,7 @@ form.addEventListener("submit", function (e) {
     //Checking if the date is valid
     if (isNaN(dateObject)) {
       alert("Invalid date,Please enter correct date! ");
+      day.value = month.value = year.value = "";
     } else {
       console.log(dateObject);
       //Convert the date into time in miliseconds
@@ -98,4 +99,7 @@ form.addEventListener("submit", function (e) {
   yearVal.textContent = numofYears;
   monthVal.textContent = months;
   dayVal.textContent = days;
+
+  // Clear the input fields
+  day.value = month.value = year.value = "";
 });
