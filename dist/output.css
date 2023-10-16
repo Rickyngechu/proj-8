@@ -551,6 +551,9 @@ body {
   border-bottom-right-radius: 5px;
   border-bottom-right-radius: 2rem;
   padding-block: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px,
+      rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
+      rgba(0, 0, 0, 0.07) 0px 16px 16px;
 }
 
 .lb {
@@ -563,7 +566,7 @@ body {
 }
 
 input {
-  width: 5rem;
+  width: 6rem;
   border: 1px solid hsl(0, 1%, 44%);
   background-color: transparent;
   display: block;
@@ -575,9 +578,25 @@ input {
   transition: all 0.2s;
 }
 
+/* input:required:invalid {
+    border: 1px solid hsl(0, 100%, 67%);
+  } */
+
+/* input:required:invalid .lb {
+    color: hsl(0, 100%, 67%);
+  } */
+
 input:focus {
   outline: none;
   border: 1px solid hsl(259, 100%, 65%);
+}
+
+input:focus:invalid {
+  border: 1px solid hsl(0, 100%, 67%);
+}
+
+input:focus:invalid .lb {
+  color: hsl(0, 100%, 67%);
 }
 
 .btn {
@@ -618,6 +637,14 @@ input:focus {
 
 .val {
   color: hsl(259, 100%, 65%);
+}
+
+.error-txt {
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: hsl(0, 100%, 67%);
+  font-size: 0.8rem;
+  line-height: 1;
 }
 
 @media screen and (max-width: 375px) {
@@ -682,6 +709,10 @@ input:focus {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.border {
+  border-width: 1px;
 }
 
 .bg-Off-white {

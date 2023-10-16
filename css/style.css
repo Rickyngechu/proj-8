@@ -32,7 +32,7 @@
     margin-bottom: 0.2rem;
   }
   input {
-    width: 5rem;
+    width: 6rem;
     border: 1px solid hsl(0, 1%, 44%);
     background-color: transparent;
     display: block;
@@ -44,11 +44,22 @@
 
     transition: all 0.2s;
   }
+  /* input:required:invalid {
+    border: 1px solid hsl(0, 100%, 67%);
+  } */
+  /* input:required:invalid .lb {
+    color: hsl(0, 100%, 67%);
+  } */
   input:focus {
     outline: none;
     border: 1px solid hsl(259, 100%, 65%);
   }
-
+  input:focus:invalid {
+    border: 1px solid hsl(0, 100%, 67%);
+  }
+  input:focus:invalid .lb {
+    color: hsl(0, 100%, 67%);
+  }
   .btn {
     text-align: center;
     display: block;
@@ -85,6 +96,13 @@
   }
   .val {
     color: hsl(259, 100%, 65%);
+  }
+  .error-txt {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: hsl(0, 100%, 67%);
+    font-size: 0.8rem;
+    line-height: 1;
   }
   @media screen and (max-width: 375px) {
   }
