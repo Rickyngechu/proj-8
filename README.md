@@ -39,8 +39,8 @@ The following screenshots shows both the mobile and desktop version of the proje
 
 ### Links
 
-- Solution URL: [Source code](https://github.com/Rickyngechu/proj-7)
-- Live Site URL: [Netlify live web](https://frontendmentour-7.netlify.app)
+- Solution URL: [Source code](https://github.com/Rickyngechu/proj-8)
+- Live Site URL: [Netlify live web](https://frontendmentour-8.netlify.app)
 
 ## My process
 
