@@ -4,9 +4,9 @@ const lbMonth = document.querySelector(".lb-month");
 const lbyear = document.querySelector(".lb-year");
 
 /* Input values */
-let day = document.querySelector(".inp-day");
-let month = document.querySelector(".inp-month");
-let year = document.querySelector(".inp-year");
+let dayinp = document.querySelector(".inp-day");
+let monthinp = document.querySelector(".inp-month");
+let yearinp = document.querySelector(".inp-year");
 
 const form = document.querySelector(".fm");
 
@@ -15,59 +15,76 @@ const yearVal = document.querySelector(".years-val");
 const monthVal = document.querySelector(".months-val");
 const dayVal = document.querySelector(".days-val");
 
-const html = `<p class="error-txt">This field is required!</p>`;
+const dayErr = `<p class="error-txt day-err">Must be a valid day!</p>`;
+const monthErr = `<p class="error-txt month-err">Must be a valid month!</p>`;
+const yearErr = `<p class="error-txt year-err">Must be a valid year!</p>`;
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  const dayInpt = day.value;
-  const monthInpt = month.value;
-  const yearInpt = year.value;
+let date = new Date();
+const year = date.getFullYear();
+const month = date.getMonth() + 1;
+const day = date.getDate();
 
-  //Output variables
-  let months = 0;
-  let days = 0;
-  let numofYears = 0;
+console.log(year, month, day);
 
-  if (dayInpt === "" || monthInpt === "" || yearInpt === "") {
-    if (dayInpt === "") {
+function calcDate() {
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    let months = 0;
+    let days = 0;
+    let numofYears = 0;
+
+    // Get the input values from the user interface
+    const dayInpt = +dayinp.value;
+    const monthInpt = +monthinp.value;
+    const yearInpt = +yearinp.value;
+
+    // Check if the day or the month or the year is greater than current day?
+    if (dayinp.value > 31) {
       lbDay.style.color = "hsl(0, 100%, 67%)";
-      day.style.border = "1px solid hsl(0, 100%, 67%)";
-      day.insertAdjacentHTML("afterend", html);
+      dayinp.style.border = "1px solid hsl(0, 100%, 67%)";
+      dayinp.insertAdjacentHTML("afterend", dayErr);
     }
-    if (monthInpt === "") {
+
+    if (document.querySelector(".day-err") && dayinp.value <= 31) {
+      lbDay.style.color = "hsl(0, 1%, 44%)";
+      dayinp.style.border = "1px solid hsl(0, 1%, 44%)";
+      document.querySelector(".day-err").remove();
+    }
+
+    if (monthinp.value > 12) {
       lbMonth.style.color = "hsl(0, 100%, 67%)";
-      month.style.border = "1px solid hsl(0, 100%, 67%)";
-      month.insertAdjacentHTML("afterend", html);
+      monthinp.style.border = "1px solid hsl(0, 100%, 67%)";
+      monthinp.insertAdjacentHTML("afterend", monthErr);
     }
-    if (yearInpt === "") {
+    if (document.querySelector(".month-err") && monthinp.value <= 12) {
+      lbMonth.style.color = "hsl(0, 1%, 44%)";
+      monthinp.style.border = "1px solid hsl(0, 1%, 44%)";
+      document.querySelector(".month-err").remove();
+    }
+    if (yearinp.value > year) {
       lbyear.style.color = "hsl(0, 100%, 67%)";
-      year.style.border = "1px solid hsl(0, 100%, 67%)";
-      year.insertAdjacentHTML("afterend", html);
+      yearinp.style.border = "1px solid hsl(0, 100%, 67%)";
+      yearinp.insertAdjacentHTML("afterend", yearErr);
     }
-  } else {
-    lbDay.style.color = "hsl(0, 1%, 44%)";
-    day.style.border = "1px solid hsl(0, 1%, 44%)";
+    if (document.querySelector(".year-err") && yearinp.value <= year) {
+      lbyear.style.color = "hsl(0, 1%, 44%)";
+      yearinp.style.border = "1px solid hsl(0, 1%, 44%)";
+      document.querySelector(".year-err").remove();
+    }
 
-    lbMonth.style.color = "hsl(0, 1%, 44%)";
-    month.style.border = "1px solid hsl(0, 1%, 44%)";
-
-    lbyear.style.color = "hsl(0, 1%, 44%)";
-    year.style.border = "1px solid hsl(0, 1%, 44%)";
-    document
-      .querySelectorAll(".error-txt")
-      .forEach(el => (el.style.display = "none"));
-
-    //Convert the input data into a new date objet
-    const dateObject = new Date(`"${dayInpt}/${monthInpt}/${yearInpt}"`);
-
+    const str = `"${monthInpt}/${dayInpt}/${yearInpt}"`;
+    console.log(str);
+    // Convert the input data into a new date objet
+    const dateTime = Date.parse(str);
     //Checking if the date is valid
-    if (isNaN(dateObject)) {
+    if (isNaN(dateTime)) {
       alert("Invalid date,Please enter correct date! ");
-      day.value = month.value = year.value = "";
+      dayinp.value = monthinp.value = yearinp.value = "";
     } else {
-      console.log(dateObject);
+      console.log(dateTime);
       //Convert the date into time in miliseconds
-      const timeGet = dateObject.getTime();
+      const timeGet = dateTime;
 
       //Get the diffrence in time now and user input time
       const timeDiff = Date.now() - timeGet;
@@ -75,31 +92,30 @@ form.addEventListener("submit", function (e) {
       console.log(timeDiff);
 
       //Calculate years
-      numofYears = Math.floor(timeDiff / (86400000 * 365));
+      numofYears = Math.abs(Math.floor(timeDiff / (86400000 * 365)));
 
       console.log(numofYears);
       const diff = timeDiff - 20 * 31536000000;
 
       //Calculate months
-      months = Math.floor(diff / 2626560000);
-
+      months = Math.abs(Math.floor(diff / 2626560000));
+      console.log(months);
       const diffrentdays = diff - 86400000 * 9;
 
       //calculate days
-      days = Math.floor(diffrentdays / 86400000);
+      days = Math.abs(Math.floor(diffrentdays / 86400000));
 
       //We shall finally print a string containing all the data.
       console.log(
         `The time diffrence will be ${numofYears} years, ${months} months and ${days} days.`
       );
     }
-  }
-  //We need to calculate the number of days,months and years
 
-  yearVal.textContent = numofYears;
-  monthVal.textContent = months;
-  dayVal.textContent = days;
+    console.log(dayInpt, monthInpt, yearInpt);
 
-  // Clear the input fields
-  day.value = month.value = year.value = "";
-});
+    yearVal.textContent = numofYears;
+    monthVal.textContent = months;
+    dayVal.textContent = days;
+  });
+}
+calcDate();

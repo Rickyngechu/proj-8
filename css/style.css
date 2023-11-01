@@ -91,9 +91,10 @@
     margin-top: 0.5rem;
     font-style: italic;
     color: hsl(0, 100%, 67%);
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     line-height: 1;
   }
+
   @media screen and (max-width: 375px) {
   }
 
