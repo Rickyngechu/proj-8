@@ -631,8 +631,11 @@ input:focus {
   line-height: 1;
 }
 
-@media screen and (max-width: 375px) {
-}
+/* @media screen and (max-width: 375px) {
+    .outp {
+      font-size: 1.5rem;
+    }
+  } */
 
 @media screen and (min-width: 900px) {
   .btn {
@@ -713,6 +716,28 @@ input:focus {
   padding: 1.25rem;
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
 .uppercase {
   text-transform: uppercase;
+}
+
+@media (min-width: 640px) {
+  .sm\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
 }

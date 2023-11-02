@@ -35,8 +35,8 @@ function calcDate() {
     let numofYears = 0;
 
     // Get the input values from the user interface
-    const dayInpt = +dayinp.value;
-    const monthInpt = +monthinp.value;
+    const dayInpt = `${+dayinp.value}`.padStart(2, 0);
+    const monthInpt = `${+monthinp.value}`.padStart(2, 0);
     const yearInpt = +yearinp.value;
 
     // Check if the day or the month or the year is greater than current day?
@@ -80,7 +80,7 @@ function calcDate() {
     //Checking if the date is valid
     if (isNaN(dateTime)) {
       alert("Invalid date,Please enter correct date! ");
-      dayinp.value = monthinp.value = yearinp.value = "";
+      // dayinp.value = monthinp.value = yearinp.value = "";
     } else {
       console.log(dateTime);
       //Convert the date into time in miliseconds
@@ -88,31 +88,23 @@ function calcDate() {
 
       //Get the diffrence in time now and user input time
       const timeDiff = Date.now() - timeGet;
-      console.log(timeGet);
-      console.log(timeDiff);
 
       //Calculate years
       numofYears = Math.abs(Math.floor(timeDiff / (86400000 * 365)));
 
       console.log(numofYears);
-      const diff = timeDiff - 20 * 31536000000;
+      const diff = timeDiff - 86400000 * 365 * numofYears;
 
       //Calculate months
-      months = Math.abs(Math.floor(diff / 2626560000));
+      months = Math.abs(Math.floor(diff / (86400000 * 31)));
       console.log(months);
-      const diffrentdays = diff - 86400000 * 9;
+      const diffrentdays = diff - 86400000 * 31 * months;
 
       //calculate days
       days = Math.abs(Math.floor(diffrentdays / 86400000));
-
-      //We shall finally print a string containing all the data.
-      console.log(
-        `The time diffrence will be ${numofYears} years, ${months} months and ${days} days.`
-      );
     }
 
-    console.log(dayInpt, monthInpt, yearInpt);
-
+    /*Print the calculated items to the labels*/
     yearVal.textContent = numofYears;
     monthVal.textContent = months;
     dayVal.textContent = days;
